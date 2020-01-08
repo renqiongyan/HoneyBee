@@ -1,0 +1,63 @@
+{% extends 'base_index1.html' %}
+<!-- BEGIN  centent -->
+{% block content %}
+    <!-- 引入 echarts.js -->
+    <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+    <!-- 引入主题 -->
+    <script src="https://www.runoob.com/static/js/westeros.js"></script>
+            
+
+    <div class="container about">
+        <h2><img src="{{ url_for('static',filename='admin/img/gene-statistics.png') }}"
+                 alt="logo" class="logo-default">🔍The Result of Searching for species and function gene difference:
+        </h2>
+        <hr/>
+
+        Gene numbers: <a style="color: #0c83e7">{{ num }}</a>
+        <table id="tb1" name="tb1" border="1" width="100%" align="center">
+            <thead id="tr1" name="tr1" align="center">
+            <tr>
+                <td>##</td>
+                <td>id</td>
+                <td width="12%">物种</td>
+                <td width="12%">基因</td>
+                <td>染色体</td>
+                <td>起始位点</td>
+                <td>终止位点</td>
+                <td>方向</td>
+            </tr>
+            </thead>
+            <tbody id="tr2" name="tr2" align="center">
+            {% for loc in locs %}
+                <tr>
+                    <td><a style="color: dodgerblue">{{ loop.index }}</a></td>
+                    <td>{{ loc[0] }}</td>
+                    <td>{{ loc[1] }}</td>
+                    <td>{{ loc[2] }}</td>
+                    <td>{{ loc[3] }}</td>
+                    <td>{{ loc[4] }}</td>
+                    <td>{{ loc[5] }}</td>
+                    <td>{{ loc[6] }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {#    {% if 1< page < page_count %}#}
+        {#    <a href="{{ url_for('test_select',page=page-1) }}">上一页</a>#}
+        {#    <span>第{{ page }}页/共计{{ page_count }}页</span>#}
+        {#    <a href="{{ url_for('test_select',page=page + 1) }}">下一页</a>#}
+        {#{% elif page==1 %}#}
+        {#    <a>上一页</a>#}
+        {#    <span>第{{ page }}页/共计{{ page_count }}页</span>#}
+        {#    <a href="{{ url_for('test_select',page=page + 1) }}">下一页</a>#}
+        {#{% elif page==page_count %}#}
+        {#    <a href="{{ url_for('test_select',page=page-1) }}">上一页</a>#}
+        {#    <span>第{{ page }}页/共计{{ page_count }}页</span>#}
+        {#    <a>下一页</a>#}
+        {#{% endif %}#}
+        <br/><br/>
+    </div>
+
+    
+{% endblock %}
+<!-- END  centent -->

@@ -1,0 +1,100 @@
+{% extends 'base_index1.html' %}
+<!-- BEGIN  centent -->
+{% block content %}
+    <div class="container about">
+        <h2><img src="{{ url_for('static',filename='admin/img/gene-search.png') }}"
+                 alt="logo" class="logo-default">Search for species and gene locus:</h2>
+        <hr>
+        <p style="color: deeppink">这是search，据说要Linux呀啦!~~!~~!~~~!~~~</p>
+    </div>
+
+    <div class="container about">
+        <script type="text/javascript" src="{{ url_for('static',filename='js/search_loc.js') }}"></script>
+        <div id="container1" class="form-group">
+            <form id="fgene" name="fgene" target="iframe"
+                  class="navbar-form navbar-left"
+                  enctype="multipart/form-data"
+            >
+                <label for="">Select the species:</label>
+                <select id="species1" name="species1" class="form-control">
+                    <option value="Apis cerana">Apis cerana</option>
+                    <option value="Apis dorsata">Apis dorsata</option>
+                    <option value="Apis florea">Apis florea</option>
+                    <option value="Apis mellifera">Apis mellifera</option>
+                    <option value="Bombus impatiens" selected>Bombus impatiens</option>
+                </select>
+                <label for="">Gene name:</label>
+                <input id="gene" name="gene" type="text" class="form-control"
+                       placeholder="XM_017066638.2" style="width: 150px" value="XM_017066638.2"/>
+                <button type="submit" class="btn btn-default" onclick="search_loc1()">Submit</button>
+            </form>
+
+            <form id="fchr" name="fchr" target="iframe"
+                  class="navbar-form navbar-left"
+                  enctype="multipart/form-data"
+            >
+                <label for="">Select the species:</label>
+                <select id="species2" name="species2" class="form-control">
+                    <option value="Apis cerana" selected>Apis cerana</option>
+                    <option value="Apis dorsata">Apis dorsata</option>
+                    <option value="Apis florea">Apis florea</option>
+                    <option value="Apis mellifera">Apis mellifera</option>
+                    <option value="Bombus impatiens">Bombus impatiens</option>
+                </select>
+                <label for="">Chromosome:</label>
+                <input id="chromosome" name="chromosome" type="text" class="form-control"
+                       placeholder="NT_176925.1"{#--placeholder:规定用于验证输入字段的模式--#}
+                       style="width: 150px" value="NT_176925.1"/>
+                <label for="">start hit:</label>
+                <input id="gstart" name="gstart" type="text" class="form-control"
+                       placeholder="1" style="width: 100px" value="75132"/>
+                <label for="">end hit:</label>
+                <input id="gend" name="gend" type="text" class="form-control"
+                       placeholder="27739767" style="width: 100px" value="228222"/>
+                <button type="submit" class="btn btn-default" onclick="search_loc2()">Submit</button>
+            </form>
+            <iframe id="iframe" name="iframe" style="display:none;"></iframe>
+            <br/><br/><br/><br/><br/>
+            <hr/>
+
+            Gene numbers: <a style="color: #0c83e7" id="num"></a>
+            <form>
+                <table id="tb1" name="tb1" border="1" width="100%" align="center">
+                    <thead align="center">
+                    <tr align="center">
+                        <th align="center">##</th>
+                        <th align="center">ID</th>
+                        <th align="center" width="12%">Species</th>
+                        <th align="center" width="12%">Gene</th>
+                        <th align="center">Chromosome</th>
+                        <th align="center">Start</th>
+                        <th align="center">End</th>
+                        <th align="center">View</th>
+                    </tr>
+                    </thead>
+
+                    <tbody id="d0">{# 此处显示查询结果，在Ajax中做逻辑判断 #}
+                    <tr id="c0">
+                        <td id="c1" colspan="8" align="center"></td>
+                    </tr>
+                    </tbody>
+                </table>
+                Last page
+                Next page
+
+                <hr/>
+            </form>
+        </div>
+    </div>
+
+    <div class="container about">
+        <!-- http://202.203.132.231:8088/JBrowse-1.15.4/index.html?data=data&loc=Chr1%3A1000..5000 -->
+        <iframe
+                width="100%"
+                height="900"
+                name="I2"
+                {#                src="http://202.203.132.231:8088/JBrowse-1.15.4/?data=ath"#}
+        ></iframe>
+    </div>
+{% endblock %}
+<!-- END  centent -->

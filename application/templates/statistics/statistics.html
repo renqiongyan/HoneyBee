@@ -1,0 +1,60 @@
+{% extends 'base_index1.html' %}
+<!-- BEGIN  centent -->
+{% block content %}
+    <!-- 引入 echarts.js -->
+    <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+
+    <div class="container">
+        <h2><img src="{{ url_for('static',filename='admin/img/gene-statistics.png') }}"
+                 alt="logo" class="logo-default">Search for function:</h2>
+        <hr>
+    </div>
+
+    <div class="container about">
+        <script type="text/javascript" src="{{ url_for('static',filename='js/search_seq.js') }}"></script>
+        <div id="container1" class="form-group">
+            <form id="table_seq" target="iframe" class="navbar-form navbar-left"
+                  enctype="multipart/form-data">
+                <label for="">Input the function:</label>
+                <input id="fun" name="fun" type="text" class="form-control"
+                       laceholder="opsin" style="width: 150px" value="drebrin-like"/>
+                <button type="submit" class="btn btn-default" onclick="search_seq1()">Submit</button>
+            </form>
+            {# 加上这个隐藏的ifram之后，url就不会显示参数了，也不会自动刷新本页面了 #}
+            <iframe id="iframe" name="iframe" style="display:none;"></iframe>
+            <br/><br/><br/>
+            <hr/>
+
+            Gene numbers: <a style="color: #0c83e7" id="num"></a>
+            <form>
+                <table id="tb1" name="tb1" border="1" width="100%" align="center">
+                    <thead align="center">
+                    <tr>
+                        <th align="center">##</th>
+                        <th align="center">ID</th>
+                        <th width="12%">Species</th>
+                        <th width="10%">Gene</th>
+                        <th>Function</th>
+                        <th>Seq</th>
+                        <th width="3%">View</th>
+                    </tr>
+                    </thead>
+
+                    <tbody id="d0">{# 此处显示查询结果，在Ajax中做逻辑判断 #}
+                    <tr id="c0">
+                        <td id="c1" colspan="7" align="center"></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <br/><br/>
+                <hr/>
+                <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+                <div id="echart1" style="width:auto;height:400px;align: center"></div>
+            </form>
+        </div>
+        <hr>
+
+    </div>
+
+{% endblock %}

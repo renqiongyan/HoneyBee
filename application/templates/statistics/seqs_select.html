@@ -1,0 +1,266 @@
+{% extends 'base_index1.html' %}
+<!-- BEGIN  centent -->
+{% block content %}
+    <!-- 引入 echarts.js -->
+    <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+    <!-- 引入主题 -->
+    <script src="https://www.runoob.com/static/js/westeros.js"></script>
+
+
+    <div class="container about">
+        <h2><img src="{{ url_for('static',filename='admin/img/gene-statistics.png') }}"
+                 alt="logo" class="logo-default">🔍The Result of Searching for species and function gene difference:
+        </h2>
+        <hr/>
+    </div>
+    <div class="container about">
+        <div class="search">
+            Gene numbers: <a style="color: #0c83e7">{{ num }}</a>
+            <table id="tb1" name="tb1" border="1" width="100%">
+                <thead id="tr1" name="tr1" align="center">
+                <tr>
+                    <td>##</td>
+                    <td>id</td>
+                    <td width="12%">物种</td>
+                    <td width="10%">基因</td>
+                    <td>功能</td>
+                    <td>序列</td>
+                    <td width="3%">View</td>
+                </tr>
+                </thead>
+                <tbody id="tr2" name="tr2" align="center">
+                {% for seq in seqs %}
+                    <tr>
+                        <td><a style="color: dodgerblue">{{ loop.index }}</a></td>
+                        <td>{{ seq[0] }}</td>
+                        <td>{{ seq[1] }}</td>
+                        <td>{{ seq[2] }}</td>
+                        <td>{{ seq[3] }}</td>
+                        <td style="word-break: break-word">{{ seq[4] }}</td>
+                        <td><a href="">view</a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <br/><br/>
+        </div>
+    </div>
+
+    <div class="container about">
+        <div class="search">
+            <hr/>
+            <div id="chartmain" style="width:auto; height: 400px; align: center"></div>
+            <script type="text/javascript">
+                var tab = document.getElementById("tb1");//找到这个表格
+                var rows = tab.rows.length;//取得这个table下的所有行(的行数)
+
+                var func = [];
+                var Acera = [];
+                var Adora = [];
+                var Aflor = [];
+                var Amell = [];
+                var Bimpa = [];
+                var i = 0;
+
+                func[i] = "测试功能1";
+                if (i % 5 == 0) {
+                    Acera[i] =
+                    {{ num }}
+                }
+                ;
+                if (i % 5 == 0) {
+                    Adora[i] = ""
+                }
+                ;
+                if (i % 5 == 0) {
+                    Aflor[i] = ""
+                }
+                ;
+                if (i % 5 == 0) {
+                    Amell[i] = ""
+                }
+                ;
+                if (i % 5 == 0) {
+                    Bimpa[i] = ""
+                }
+                ;
+                i++;
+
+                func[i] = "测试功能2";
+                if (i % 5 == 1) {
+                    Acera[i] =
+                    {{ num }}
+                }
+                ;
+                if (i % 5 == 1) {
+                    Adora[i] = ""
+                }
+                ;
+                if (i % 5 == 1) {
+                    Aflor[i] = ""
+                }
+                ;
+                if (i % 5 == 1) {
+                    Amell[i] = ""
+                }
+                ;
+                if (i % 5 == 1) {
+                    Bimpa[i] = ""
+                }
+                ;
+                i++;
+                ;
+
+                var option = {
+                    color: [
+                        "#516b91",
+                        "#59c4e6",
+                        "#edafda",
+                        "#93b7e3",
+                        "#a5e7f0",
+                        "#cbb0e3"
+                    ],
+                    title: {
+                        text: 'Gene quantity difference',
+                        subtext: 'Based on the same function of different species'
+                    },
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        data: ['Apis cerana', 'Apis dorsata', 'Apis florea', 'Apis mellifera', 'Bombus impatiens']
+                    },
+                    toolbox: {
+                        show: true,
+                        feature: {
+                            mark: {show: true},
+                            dataView: {show: true, readOnly: false},
+                            magicType: {show: true, type: ['line', 'bar']},
+                            restore: {show: true},
+                            saveAsImage: {show: true}
+                        }
+                    },
+                    calculable: true,
+                    xAxis: [
+                        {
+                            type: 'value',
+                            boundaryGap: [0, 0.1]
+                        }
+                    ],
+                    yAxis: [
+                        {
+                            type: 'category',
+                            data: func
+                        }
+                    ],
+
+                    series: [
+                        {
+                            name: 'Apis cerana',
+                            type: 'bar',
+                            data: Acera
+                        },
+                        {
+                            name: 'Apis dorsata',
+                            type: 'bar',
+                            data: Adora
+                        },
+                        {
+                            name: 'Apis florea',
+                            type: 'bar',
+                            data: Aflor
+                        },
+                        {
+                            name: 'Apis mellifera',
+                            type: 'bar',
+                            data: Amell
+                        },
+                        {
+                            name: 'Bombus impatiens',
+                            type: 'bar',
+                            data: Bimpa
+                        }
+                    ]
+                };
+                var myChart = echarts.init(document.getElementById("chartmain"), 'westeros');
+
+                myChart.setOption(option);
+            </script>
+        </div>
+    </div>
+
+    <div class="container about">
+        <div class="search">
+            <hr/>
+            <div id="test" style="width:auto; height: 400px; align: center"></div>
+            <script type="text/javascript">
+                tbobj = document.getElementById("tb1");
+                tbonj = tbobj.rows.length;
+
+                var option = {
+                    color: [
+                        "#516b91",
+                        "#59c4e6",
+                        "#edafda",
+                        "#93b7e3",
+                        "#a5e7f0",
+                        "#cbb0e3"
+                    ],
+                    title: {
+                        text: 'Gene quantity difference',
+                        subtext: 'Based on the same function of different species'
+                    },
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    legend: {},
+                    toolbox: {
+                        show: true,
+                        feature: {
+                            mark: {show: true},
+                            dataView: {show: true, readOnly: false},
+                            magicType: {show: true, type: ['line', 'bar']},
+                            restore: {show: true},
+                            saveAsImage: {show: true}
+                        }
+                    },
+                    calculable: true,
+                    xAxis: [
+                        {
+                            type: 'value',
+                            boundaryGap: [0, 0.1]
+                        }
+                    ],
+                    yAxis: [
+                        {
+                            type: 'category'
+                        }
+                    ],
+                    dataset: {
+                        // 提供一份数据。
+                        source: [
+                            ['species', 'Apis cerana', 'Apis dorsata', 'Apis florea', 'Apis mellifera', 'Bombus impatiens'],
+                            ['功能1', 5, 8, 2, 4, 22],
+                            ['功能2', 45, 8, 2, 4, 22],
+                            ['功能3', 35, 38, 25, 4, 28],
+                            ['功能4', 25, 8, 21, 2, 21],
+                            ['功能5', 25, 12, 14, 42, 37]
+                        ]
+                    },
+                    series: [
+                        {type: 'bar'},
+                        {type: 'bar'},
+                        {type: 'bar'},
+                        {type: 'bar'},
+                        {type: 'bar'}
+                    ]
+                };
+                var myChart = echarts.init(document.getElementById("test"), 'westeros');
+
+                myChart.setOption(option);
+            </script>
+        </div>
+    </div>
+
+{% endblock %}
+<!-- END  centent -->

@@ -1,0 +1,84 @@
+{% extends 'base_index1.html' %}
+<!-- BEGIN  centent -->
+{% block content %}
+    <div class="container about">
+        <h2><img src="{{ url_for('static',filename='admin/img/gene-download.png') }}"
+                 alt="logo" class="logo-default">Data download</h2>
+        <hr>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#browser").treeview({
+                    toggle: function () {
+                        console.log("%s was toggled.", $(this).find(">span").text());
+                    }
+                });
+                $("#add").click(function () {
+                    var branches = $("<li><span class='folder'>New Sublist</span><ul>" +
+                        "<li><span class='file'>Item1</span></li>" +
+                        "<li><span class='file'>Item2</span></li></ul></li>").appendTo("#browser");
+                    $("#browser").treeview({
+                        add: branches
+                    });
+                });
+            });
+        </script>
+
+        {#可供下载文件：五个文件夹Apis cerana，Apis dorsata，Apis florea，Apis mellifera，Bombus impatiens#}
+        <div id="main">
+            <ul id="browser" class="filetree treeview-famfamfam" style="font-size:16px">
+                <li><span class="folder">Apis cerana files</span>
+                    <ul>
+                        <li><span class="file">
+                            <a href="../static/datafile/Apis cerana/Acera.cds" download="Acera.cds">Acera.cds</a>
+                        </span></li>
+                        <li><span class="file">
+                            <a href="../static/datafile/Apis cerana/Acera.pfam.out">Acera.pfam.out</a></span></li>
+                        <li><span class="files">
+                            <a href="../static/datafile/Apis cerana/GCF_001442555.1_ACSNU-2.0_genomic.gff">
+                            GCF_001442555.1_ACSNU-2.0_genomic.gff</a></span>
+                    </ul>
+                </li>
+                <li><span class="folder">Apis dorsata files</span>
+                    <ul>
+                        <li><span class="file"><a href="../static/datafile/Apis dorsata/Adors.cds">Adors.cds</a></span></li>
+                        <li><span class="file"><a href="../static/datafile/Apis dorsata/Adors.pfam.out">Adors.pfam.out</a></span>
+                        </li>
+                        <li><span class="file"><a
+                                href="../static/datafile/Apis dorsata/GCF_000469605.1_Apis_dorsata_1.3_genomic.gff">
+                            GCF_000469605.1_Apis_dorsata_1.3_genomic.gff</a></span>
+                    </ul>
+                </li>
+                <li><span class="folder">Apis florea files</span>
+                    <ul>
+                        <li><span class="file"><a href="../static/datafile/Apis florea/Aflor.cds">Aflor.cds</a></span></li>
+                        <li><span class="file"><a href="../static/datafile/Apis florea/Aflor.pfam.out">Aflor.pfam.out</a></span>
+                        </li>
+                        <li><span class="file"><a href="../static/datafile/Apis florea/GCF_000184785.2_Aflo_1.0_genomic.gff">
+                            GCF_000184785.2_Aflo_1.0_genomic.gff</a></span>
+                    </ul>
+                </li>
+                <li><span class="folder">Apis mellifera files</span>
+                    <ul>
+                        <li><span class="file"><a href="../static/datafile/Apis mellifera/Amell.cds">Amell.cds</a></span></li>
+                        <li><span class="file"><a
+                                href="../static/datafile/Apis mellifera/Amell.pfam.out">Amell.pfam.out</a></span></li>
+                        <li><span class="file"><a
+                                href="../static/datafile/Apis mellifera/GCF_003254395.2_Amel_HAv3.1_genomic.gff">
+                            GCF_003254395.2_Amel_HAv3.1_genomic.gff</a></span>
+                    </ul>
+                </li>
+                <li><span class="folder">Bombus impatiens files</span>
+                    <ul>
+                        <li><span class="file"><a href="../static/datafile/Bombus impatiens/Bimpa.cds">Bimpa.cds</a></span></li>
+                        <li><span class="file"><a
+                                href="../static/datafile/Bombus impatiens/Bimpa.pfam.out">Bimpa.pfam.out</a></span>
+                        </li>
+                        <li><span class="file"><a href="../static/datafile/Bombus impatiens/GCF_000188095.3_BIMP_2.2_genomic.gff">
+                            GCF_000188095.3_BIMP_2.2_genomic.gff</a></span>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}
+<!-- END  centent -->

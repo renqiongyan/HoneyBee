@@ -1,0 +1,21 @@
+{% extends 'base_index1.html' %}
+<!-- BEGIN  centent -->
+{% block content %}
+    <div class="container about">
+        <h2><img src="{{ url_for('static',filename='admin/img/gene-home.png') }}"
+                 alt="logo" class="logo-default">About HoneyBee Gene Database</h2>
+        <hr>
+        <p align="center"><img src="{{ url_for('static',filename='admin/img/gene.png') }}"
+                               style="width: auto"></p>
+        <p>Bee is a haploid diploid organism, its female is a diploid male is a haploid and the male does not have
+            meiosis in the process of sperm production, so its haploid diploid has obvious sex determining mechanism.
+        </p>
+        <p>Studying bees can help us understand many health problems, such as immune response, allergic reaction,
+            metabolic disease, X chromosome disease, etc. The study of genetic structure diversity and gene location
+            by using molecular biology technology can effectively study the population genetic structure of bee
+            parasitic mite, the evolution of the genome, brain function, sexual function, immune response and disease
+            defense mechanism, pattern differentiation, etc.
+        </p>
+    </div>
+{% endblock %}
+<!-- END  centent -->

@@ -1,0 +1,331 @@
+{% extends 'base_index1.html' %}
+<!-- BEGIN  centent -->
+{% block content %}
+    <!-- 引入 echarts.js -->
+    <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+    <!-- 引入主题 -->
+    <script src="https://www.runoob.com/static/js/westeros.js"></script>
+
+    <div class="container about">
+        <h2><img src="{{ url_for('static',filename='admin/img/gene-statistics.png') }}"
+                 alt="logo" class="logo-default">Search for species and Rloop locus:</h2>
+        <hr>
+        <form
+                class="navbar-form navbar-left"
+                role="search"
+                method="post"
+                action="search"
+        >
+            <div class="searchType">
+                <label for="">Select the species:</label>
+                <select name="species" class="form-control">
+                    <option value="Apis cerana">Apis cerana</option>
+                    <option value="Apis dorsata">Apis dorsata</option>
+                    <option value="Apis florea">Apis florea</option>
+                    <option value="Apis florea">Apis florea</option>
+                    <option value="Apis mellifera">Apis mellifera</option>
+                    <option value="Bombus impatiens" selected>Bombus impatiens</option>
+                </select>
+                <label for="">Chromosome:</label>
+                <input
+                        type="text"
+                        class="form-control"
+                        placeholder="chr1"{#--placeholder:规定用于验证输入字段的模式--#}
+                        name="chromosome"
+                        style="width: 150px"
+                        value="chr2"
+                />
+                <label for="">start hit:</label>
+                <input
+                        type="text"
+                        class="form-control"
+                        placeholder="1000"
+                        name="gstart"
+                        style="width: 100px"
+                        value="8768"
+                />
+                <label for="">end hit:</label>
+                <input
+                        type="text"
+                        class="form-control"
+                        placeholder="20000"
+                        name="gend"
+                        style="width: 100px"
+                        value="9173"
+                />
+                <button type="submit" class="btn btn-default" onclick="submitForm()">
+                    Submit
+                </button>
+            </div>
+        </form>
+        <br/><br/><br/>
+        <hr/>
+
+        Rloop numbers: <font color="blue">1</font>
+        <table border="1" width="80%">
+            <tr>
+                <th>Species</th>
+                <th>Sample</th>
+                <th>RloopID</th>
+                <th>strand</th>
+                <th>View</th>
+            </tr>
+            <tr>
+                <td>Bombus impatiens</td>
+                <td>callus</td>
+                <td>Chr2:NW_016017455.1</td>
+                <td>-</td>
+                <td>
+                    <a href="statistics?species=Apis cerana&sample1=callus&chr=Chr2&gstart=8768&gend=9173&gdis=5000&flag=1">view</a>
+                </td>
+            </tr>
+        </table>
+
+        Last page
+        Next page
+
+
+        <div class="container about">
+            <hr/>
+            <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+            <div id="echart1" style="width:auto;height:400px;align: center"></div>
+            <script type="text/javascript">
+                var myChart = echarts.init(document.getElementById('echart1'));
+                var arr0 = [];
+                var arr1 = [];
+                var arr2 = [];
+                var arr3 = [];
+                var arr4 = [];
+                var arr5 = [];
+                var i = 0;
+
+                arr0[i] = "测试功能1";
+                if (i % 5 == 0) {
+                    arr1[i] = "33.37"
+                }
+                ;
+                if (i % 5 == 0) {
+                    arr2[i] = "5.37"
+                }
+                ;
+                if (i % 5 == 0) {
+                    arr3[i] = "3.37"
+                }
+                ;
+                if (i % 5 == 0) {
+                    arr4[i] = "30.37"
+                }
+                ;
+                if (i % 5 == 0) {
+                    arr5[i] = "30.37"
+                }
+                ;
+                i++;
+
+                arr0[i] = "测试功能2";
+                if (i % 5 == 0) {
+                    arr1[i] = "33.37"
+                }
+                ;
+                if (i % 5 == 1) {
+                    arr2[i] = "5.37"
+                }
+                ;
+                if (i % 5 == 1) {
+                    arr3[i] = "3.37"
+                }
+                ;
+                if (i % 5 == 1) {
+                    arr4[i] = "3.37"
+                }
+                ;
+                if (i % 5 == 4) {
+                    arr5[i] = "30.37"
+                }
+                ;
+                i++;
+                ;
+
+                var option = {
+                    color: [
+                        "#516b91",
+                        "#59c4e6",
+                        "#edafda",
+                        "#93b7e3",
+                        "#a5e7f0",
+                        "#cbb0e3"
+                    ],
+                    title: {
+                        text: '基因数量差异',
+                        subtext: '基于不同物种不同功能'
+                    },
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        data: ['Apis cerana', 'Apis dorsata', 'Apis florea', 'Apis mellifera', 'Bombus impatiens']
+                    },
+                    toolbox: {
+                        show: true,
+                        feature: {
+                            mark: {show: true},
+                            dataView: {show: true, readOnly: false},
+                            magicType: {show: true, type: ['line', 'bar']},
+                            restore: {show: true},
+                            saveAsImage: {show: true}
+                        }
+                    },
+                    calculable: true,
+                    xAxis: [
+                        {
+                            type: 'value',
+                            boundaryGap: [0, 0.1]
+                        }
+                    ],
+                    yAxis: [
+                        {
+                            type: 'category',
+                            data: arr0
+                        }
+                    ],
+                    series: [
+                        {
+                            name: 'Apis cerana',
+                            type: 'bar',
+                            data: arr1
+                        },
+                        {
+                            name: 'Apis dorsata',
+                            type: 'bar',
+                            data: arr2
+                        },
+                        {
+                            name: 'Apis florea',
+                            type: 'bar',
+                            data: arr3
+                        },
+                        {
+                            name: 'Apis mellifera',
+                            type: 'bar',
+                            data: arr4
+                        },
+                        {
+                            name: 'Bombus impatiens',
+                            type: 'bar',
+                            data: arr5
+                        }
+                    ]
+                };
+
+                myChart.setOption(option)
+            </script>
+        </div>
+
+        <div class="search">
+            <div class="container byLocus">
+                <hr/>
+                <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+                <div id="main" style="width:auto;height:400px;align: center"></div>
+                <script type="text/javascript">
+                    var option = {
+                        color: [
+                            "#516b91",
+                            "#59c4e6",
+                            "#edafda",
+                            "#93b7e3",
+                            "#a5e7f0",
+                            "#cbb0e3"
+                        ],
+                        title: {
+                            text: '学习echarts测试',
+                        },
+                        toolbox: {
+                            show: true,
+                            feature: {
+                                mark: {show: true},
+                                restore: {show: true},
+                                saveAsImage: {show: true}
+                            }
+                        },
+                        series: [
+                            {
+                                name: '访问来源',
+                                type: 'pie',    // 设置图表类型为饼图
+                                radius: '70%',  // 饼图的半径，外半径为可视区尺寸（容器高宽中较小一项）的 55% 长度。
+                                // 高亮样式。
+                                emphasis: {
+                                    itemStyle: {
+                                        color: 'blue'// 高亮时点的颜色
+                                    },
+                                    label: {
+                                        show: true,
+                                        // 高亮时标签的文字
+                                        formatter: '高亮时显示的标签内容'
+                                    }
+                                },
+                                data: [          // 数据数组，name 为数据项名称，value 为数据项值
+                                    {value: 235, name: '视频广告'},
+                                    {value: 250, name: '联盟广告'},
+                                    {value: 110, name: '邮件营销'},
+                                    {value: 335, name: '直接访问'},
+                                    {value: 400, name: '搜索引擎'}
+                                ]
+                            }
+                        ]
+                    }
+                    // 基于准备好的dom，初始化echarts实例
+                    var myChart = echarts.init(document.getElementById('main'), 'westeros');
+
+                    myChart.setOption(option)
+                </script>
+            </div>
+        </div>
+
+        <div class="search">
+            <div class="container byLocus">
+                <hr/>
+                <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+                <div id="rqy" style="width:auto;height:400px;align: center"></div>
+                <script type="text/javascript">
+                    option = {
+                        color: [
+                            "#516b91",
+                            "#59c4e6",
+                            "#edafda",
+                            "#93b7e3",
+                            "#a5e7f0",
+                            "#cbb0e3"
+                        ],
+                        legend: {},
+                        tooltip: {},
+                        dataset: {
+                            // 提供一份数据。
+                            source: [
+                                ['product', '2015', '2016', '2017'],
+                                ['Matcha Latte', 43.3, 85.8, 93.7],
+                                ['Milk Tea', 83.1, 73.4, 55.1],
+                                ['Cheese Cocoa', 86.4, 65.2, 82.5],
+                                ['Walnut Brownie', 72.4, 53.9, 39.1]
+                            ]
+                        },
+                        // 声明一个 X 轴，类目轴（category）。默认情况下，类目轴对应到 dataset 第一列。
+                        xAxis: {type: 'category'},
+                        // 声明一个 Y 轴，数值轴。
+                        yAxis: {},
+                        // 声明多个 bar 系列，默认情况下，每个系列会自动对应到 dataset 的每一列。
+                        series: [
+                            {type: 'bar'},
+                            {type: 'bar'},
+                            {type: 'bar'}
+                        ]
+                    }
+                    var myChart = echarts.init(document.getElementById('rqy'));
+                    myChart.setOption(option)
+                </script>
+            </div>
+        </div>
+
+
+    </div>
+{% endblock %}
+<!-- END  centent -->

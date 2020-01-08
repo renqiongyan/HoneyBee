@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<!-- BEGIN HEAD -->
+<head>
+    <meta charset="utf-8">
+    <title>HoneybeeGDB</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta content="" name="description">
+    <meta content="" name="author">
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="http://fonts.useso.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet"
+          type="text/css">
+    <link href="{{ url_for('static',filename='global/plugins/font-awesome/css/font-awesome.min.css') }}"
+          rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static',filename='global/plugins/simple-line-icons/simple-line-icons.min.css') }}"
+          rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static',filename='global/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet"
+          type="text/css">
+    <link href="{{ url_for('static',filename='global/plugins/uniform/css/uniform.default.css') }}" rel="stylesheet"
+          type="text/css">
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <!-- BEGIN PAGE LEVEL PLUGIN STYLES -->
+    <link href="{{ url_for('static',filename='global/plugins/jqvmap/jqvmap/jqvmap.css') }}" rel="stylesheet"
+          type="text/css">
+    <link href="{{ url_for('static',filename='global/plugins/morris/morris.css') }}" rel="stylesheet" type="text/css">
+    <!-- END PAGE LEVEL PLUGIN STYLES -->
+    <!-- BEGIN PAGE STYLES -->
+    <link href="{{ url_for('static',filename='admin/pages/css/tasks.css') }}" rel="stylesheet" type="text/css"/>
+    <!-- END PAGE STYLES -->
+    <!-- BEGIN THEME STYLES -->
+    <!-- DOC: To use 'rounded corners' style just load 'components-rounded.css' stylesheet instead of 'components.css' in the below style tag -->
+    <link href="{{ url_for('static',filename='global/css/components-rounded.css') }}" id="style_components"
+          rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static',filename='global/css/plugins.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static',filename='admin/layout/css/layout.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static',filename='admin/layout/css/themes/default.css') }}" rel="stylesheet"
+          type="text/css" id="style_color">
+    <link href="{{ url_for('static',filename='admin/layout/css/custom.css') }}" rel="stylesheet" type="text/css">
+    <!-- END THEME STYLES -->
+    <link rel="shortcut icon" href="favicon.ico">
+</head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+
+<body background="{{ url_for('static',filename='admin/img/black.gif') }}">
+<!-- BEGIN HEADER 标题!!!-->
+<div class="page-header">
+    <!-- BEGIN HEADER TOP -->
+    <div class="page-header-top">
+        <div class="container">
+            <div class="top-menu">
+                <ul class="nav navbar-nav control-label">{# 名称+logo#}
+                    <h1><a href="/">
+                        <img src="{{ url_for('static',filename='admin/img/logo-default.png') }}"
+                             alt="logo" class="logo-default"></a>
+                        <a class="navbar-brand" href="{{ url_for('bp_home.home') }}">
+                            <font color="#1e90ff"><b>HoneybeeGDB</b></font></a></h1>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- END HEADER TOP -->
+    <!-- BEGIN HEADER MENU -->
+    <div class="page-header-menu">
+        <div class="container">
+            <!-- BEGIN HEADER SEARCH BOX -->
+            <form class="search-form" action="search" method="GET">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search" name="query">
+                    <span class="input-group-btn">
+                        <a href="javascript:;" class="btn submit"><i class="icon-magnifier"></i></a>
+                    </span>
+                </div>
+            </form>
+            <!-- END HEADER SEARCH BOX -->
+            <!-- BEGIN MEGA MENU --><!--首页、搜索界面🔍、统计、下载、文献-->
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="{{ url_for('bp_home.home') }}">HOME</a></li>
+                    <li class="active"><a href="{{ url_for('bp_search.search') }}">SEARCH</a></li>
+                    <li class="active"><a href="{{ url_for('bp_statistics.statistics') }}">STATISTICS</a></li>
+                    <li class="active"><a href="{{ url_for('bp_download.download') }}">DOWNLOAD</a></li>
+                    <li class="active"><a href="{{ url_for('bp_publications.publications') }}">PUBLICATIONS</a></li>
+                    <li class="active"><a href="{{ url_for('bp_statistics.test') }}">测试🔍</a></li>
+                </ul>
+            </div>
+            <!-- END MEGA MENU -->
+        </div>
+        <!-- END HEADER MENU -->
+    </div>
+    <!-- END HEADER MENU -->
+</div>
+<!-- END HEADER -->
+
+<!-- BEGIN PAGE CONTAINER index欢迎界面单独设计-->
+<div class="container about">
+    <h2><img src="{{ url_for('static',filename='admin/img/hi_grey.png') }}"
+             alt="logo" class="logo-default"><font color="#f0f8ff">Welcome</font></h2>
+    <br><br><br><br><br><br><br>
+    <p class="web-font" align="center">
+        <font color="#f0f8ff" size="35">
+            <b> Welcome to<br>
+                HoneyBee Gene Database!</b>
+        </font>
+    </p>
+    <br><br><br>
+    <p align="center">
+        <img src="{{ url_for('static',filename='admin/img/welcome_circle_grey.png') }}">
+    </p>
+    <br><br><br>
+</div>
+<!-- END PAGE CONTAINER -->
+
+<!-- BEGIN PRE-FOOTER 页脚前!!!-->
+<div class="page-prefooter">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-6 col-xs-12 footer-block">
+                <h2>About</h2>
+                <p>
+                    The main purpose of learning is to query the gene information of honeybee more conveniently and
+                    intuitively, so as to further study the gene of honeybee in the future.
+                </p>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs12 footer-block">
+                <h2>Subscribe Email</h2>
+                <div class="subscribe-form">
+                    <form action="javascript:;">
+                        <div class="input-group">
+                            <input type="text" placeholder="mail@email.com" class="form-control">
+                            <span class="input-group-btn">
+							<button class="btn" type="submit">Submit</button>
+							</span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12 footer-block">
+                <h2>Follow Us On</h2>
+                <ul class="social-icons">
+                    <li>
+                        <a href="javascript:;" data-original-title="rss" class="rss"></a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-original-title="facebook" class="facebook"></a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-original-title="twitter" class="twitter"></a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-original-title="googleplus" class="googleplus"></a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-original-title="linkedin" class="linkedin"></a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-original-title="youtube" class="youtube"></a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-original-title="vimeo" class="vimeo"></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12 footer-block">
+                <h2>Contacts</h2>
+                <address class="margin-bottom-40">
+                    Phone: 181 8483 8393<br>
+                    Email: <a href="mailto:2423947238@qq.com">2423947238@qq.com</a>
+                </address>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END PRE-FOOTER -->
+
+<!-- BEGIN FOOTER -->
+<div class="page-footer">
+    <div class="container">
+        <p align="center">2020 &copy; Honeybee gene database by renqiongyan.</p>
+    </div>
+</div>
+<!-- END FOOTER -->
+
+<!--[if lt IE 9]>
+<script src="{{ url_for('static',filename='global/plugins/respond.min.js')}}"></script>
+<script src="{{ url_for('static',filename='global/plugins/excanvas.min.js')}}"></script>
+<![endif]-->
+</div>
+</body>
+<!-- END BODY -->
+</html>

@@ -1,0 +1,46 @@
+{% extends 'base_index1.html' %}
+<!-- BEGIN  centent -->
+{% block content %}
+    <div class="container about">
+        <h2><img src="{{ url_for('static',filename='admin/img/gene-statistics.png') }}"
+                 alt="logo" class="logo-default">list_seqs</h2>
+        <hr>
+<table border="1">
+    <thead>
+      <tr>
+        <td>#id</td>
+        <td>物种</td>
+        <td>基因</td>
+        <td>功能</td>
+        <td>序列</td>
+        <td>详情</td>
+      </tr>
+    </thead>
+    <tbody>
+    {% for seq in seqs %}
+        <tr><td>{{ loop.index }}</td>
+            <td>{{ seq.species }}</td>
+            <td>{{ seq.gene }}</td>
+            <td>{{ seq.function }}</td>
+            <td>{{ seq.seq }}</td>
+            <td><a href="{{ url_for('search') }}">search</a></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% if 1< page < page_count %}
+    <a href="{{ url_for('list_seqs',page=page-1) }}">上一页</a>
+    <span style="color: cornflowerblue">第{{ page }}页/共计{{ page_count }}页</span>
+    <a href="{{ url_for('list_seqs',page=page + 1) }}">下一页</a>
+{% elif page==1 %}
+    <a>上一页</a>
+    <span style="color: cornflowerblue">第{{ page }}页/共计{{ page_count }}页</span>
+    <a href="{{ url_for('list_seqs',page=page + 1) }}">下一页</a>
+{% elif page==page_count %}
+    <a href="{{ url_for('list_seqs',page=page-1) }}">上一页</a>
+    <span style="color: cornflowerblue">第{{ page }}页/共计{{ page_count }}页</span>
+    <a>下一页</a>
+{% endif %}
+    </div>
+{% endblock %}
+<!-- END  centent -->

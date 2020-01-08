@@ -1,0 +1,31 @@
+{% extends 'base_index1.html' %}
+<!-- BEGIN  centent -->
+{% block content %}
+    <!-- 引入 echarts.js -->
+    <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+    <!-- 引入主题 -->
+    <script src="https://www.runoob.com/static/js/westeros.js"></script>
+
+    <div class="container about">
+        <h2><img src="{{ url_for('static',filename='admin/img/gene-statistics.png') }}"
+                 alt="logo" class="logo-default">🔍seq_details</h2>
+        <br/><br/><br/>
+        <hr/>
+        <table border="1" width="80%" align="center">
+            <thead>
+            <tr>
+                <td normal="normal" >序列</td>
+            </tr>
+            </thead>
+            <tbody>
+            {% for seq in seqs %}
+                <tr>
+                    <td normal="normal" ><a style="color: dodgerblue">{{ seq[4] }}</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+{% endblock %}
+<!-- END  centent -->
